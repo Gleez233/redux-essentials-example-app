@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../app/hooks';
+import { Link } from 'react-router-dom'
+import { PostAuthor } from './PostAuthor';
 
 export const SinglePostPage = ({ match }) => {
   const { postId } = match.params
@@ -16,7 +18,9 @@ export const SinglePostPage = ({ match }) => {
     <section>
       <article className="post">
         <h2>{post.title}</h2>
+        <p><PostAuthor userId={post.user} /></p>
         <p className="post-content">{post.content}</p>
+        <Link to={`/editPost/${postId}`} className="button" >Edit Post</Link>
       </article>
     </section>
   )
