@@ -9,7 +9,8 @@ export const Navbar = () => {
 
         <div className="navContent">
           <div className="navLinks">
-            <Link to={"/"}>帖子列表</Link>
+            <Link to={"/"}>Posts</Link>
+            <Link to={"/users"}>Users</Link>
           </div>
         </div>
       </section>

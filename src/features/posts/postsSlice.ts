@@ -3,7 +3,7 @@ import { ReactionAddItterface } from './ReactionButtons'
 import { client } from '../../api/client'
 
 
-export const selectAppPosts: {(state: any): PostInterface[]} = state => (state.posts.posts)
+export const selectAllPosts: {(state: any): PostInterface[]} = state => (state.posts.posts)
 export const selectPostById: {(state: any, postId: string): PostInterface} = 
   (state, postId) => state.posts.posts.find(post => post.id === postId)
 

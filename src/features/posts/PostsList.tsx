@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { PostAuthor } from './PostAuthor';
 import { TimeAgo } from './TimeAgo';
 import { ReactionButtons } from './ReactionButtons';
-import { selectAppPosts, fetchPosts } from './postsSlice';
+import { selectAllPosts, fetchPosts } from './postsSlice';
 import { useDispatch } from 'react-redux';
 
 const PostExcerpt = ({ post }) => {
@@ -23,7 +23,7 @@ const PostExcerpt = ({ post }) => {
 }
 
 export const PostsList = () => {
-  const posts = useAppSelector(selectAppPosts);
+  const posts = useAppSelector(selectAllPosts);
   const dispatch = useDispatch()
   const postStatus = useAppSelector(state => state.posts.status)
   const error = useAppSelector(state => state.posts.error)
