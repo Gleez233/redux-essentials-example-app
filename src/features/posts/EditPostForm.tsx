@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom"
 
 export const EditPostForm = ({ match }) => {
   const { postId } = match.params
+  console.log('postId: ' + postId)
   const post = useAppSelector(state => state.posts.find(post => post.id === postId))
 
   const [title, setTitle] = useState(post.title)

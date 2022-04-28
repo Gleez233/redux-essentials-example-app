@@ -2,12 +2,12 @@ import React from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { Link } from 'react-router-dom';
 import { PostAuthor } from './PostAuthor';
-import { PostsInterface } from './postsSlice';
 import { TimeAgo } from './TimeAgo';
 import { ReactionButtons } from './ReactionButtons';
+import { selectAppPosts } from './postsSlice';
 
 export const PostsList = () => {
-  const posts: PostsInterface[] = useAppSelector(state => state.posts);
+  const posts = useAppSelector(selectAppPosts);
   const orderdPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 
   const renderedPosts = orderdPosts.map(post => (

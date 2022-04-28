@@ -2,7 +2,11 @@ import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import { sub } from 'date-fns'
 import { ReactionAddItterface } from './ReactionButtons'
 
-export interface PostsInterface {
+export const selectAppPosts: {(state: any): PostInterface[]} = state => (state.posts)
+export const selectPostById: (state: any, postId: string) => PostInterface
+ = (state, postId: string) => state.posts.find(post => post.id = postId)
+
+export interface PostInterface {
   id: string,
   date: string,
   title: string,
@@ -11,7 +15,7 @@ export interface PostsInterface {
   reactions: object
 }
 
-const initialState: PostsInterface[] = [
+const initialState: PostInterface[] = [
   { id: '1', title: 'First Post!', content: 'Hello!', user: '0', date: sub(new Date(), { minutes: 10}).toISOString(), reactions: {} },
   { id: '2', title: 'Second Post', content: 'More text', user: '1', date: sub(new Date(), { minutes: 5}).toISOString(), reactions: {} }
 ]
@@ -21,7 +25,7 @@ const postsSlice = createSlice({
   initialState: initialState,
   reducers: {
     postAdded: {
-      reducer: (state, action: PayloadAction<PostsInterface>) => {
+      reducer: (state, action: PayloadAction<PostInterface>) => {
         state.push(action.payload)
       },
       prepare: (title: string, content: string, userId: string) => {
@@ -38,7 +42,7 @@ const postsSlice = createSlice({
       }
     },
 
-    postUpdated(state, action: PayloadAction<PostsInterface>) {
+    postUpdated(state, action: PayloadAction<PostInterface>) {
       const { id, title, content } = action.payload
       const existingPost = state.find(post => post.id === id)
       if(existingPost) {
